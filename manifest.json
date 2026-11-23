@@ -1,0 +1,27 @@
+{
+  "name": "ریاضیار | تست ریاضی دانشآموزان",
+  "short_name": "ریاضیار",
+  "description": "تست ریاضی کوتاه و جذاب برای دانشآموزان؛ از کلاس اول تا نهم با فصلبندی و سه درجه سختی.",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f7f8fc",
+  "theme_color": "#6c5ce7",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
