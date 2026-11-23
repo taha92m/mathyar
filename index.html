@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#6c5ce7" />
+  <meta name="description" content="تست ریاضی کوتاه و جذاب برای دانشآموزان با نتیجه فوری و توضیح هر سوال" />
+  <title>ریاضیار | تست ریاضی دانشآموزان</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="icon.svg" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="ریاضیار" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f8fc;
+      --card: #ffffff;
+      --ink: #202447;
+      --muted: #727a9a;
+      --primary: #6c5ce7;
+      --primary-dark: #5746d6;
+      --mint: #00b894;
+      --danger: #ef5b6b;
+      --amber: #ffb84d;
+      --line: #e8eaf4;
+      --shadow: 0 20px 50px rgba(40, 44, 96, 0.10);
+      --shadow-sm: 0 8px 24px rgba(40, 44, 96, 0.07);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      font-family: 'Vazirmatn', 'Segoe UI', Tahoma, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(900px 500px at 85% -10%, #e9e4ff 0%, transparent 60%),
+        radial-gradient(700px 420px at 0% 100%, #dff8f1 0%, transparent 55%),
+        var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button, input { font-family: inherit; }
+    button { cursor: pointer; }
+
+    .wrap { width: min(1080px, 100% - 32px); margin-inline: auto; }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 22px 0;
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+
+    .brand-mark {
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      overflow: hidden;
+      flex: 0 0 46px;
+      background: linear-gradient(135deg, #8a7bff, #5b48de);
+      box-shadow: 0 10px 22px rgba(108, 92, 231, 0.35);
+      border: 2px solid #fff;
+    }
+    .brand-mark img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    .brand-name { font-weight: 800; font-size: 19px; letter-spacing: -0.3px; }
+    .brand-sub { font-size: 12px; color: var(--muted); margin-top: -2px; }
+
+    .top-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 9px 15px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      box-shadow: var(--shadow-sm);
+    }
+    .top-note .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 0 4px #e3f8f2; }
+
+    .screen { display: none; }
+    .screen.active { display: block; animation: fadeUp 0.5s ease both; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---------- Landing ---------- */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 44px;
+      align-items: center;
+      padding: 26px 0 70px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #f0edff;
+      color: var(--primary-dark);
+      border-radius: 999px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(34px, 5vw, 54px);
+      line-height: 1.16;
+      letter-spacing: -1.2px;
+      margin: 0 0 14px;
+      font-weight: 800;
+    }
+    h1 .grad {
+      background: linear-gradient(100deg, #6c5ce7, #a66bff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead { color: var(--muted); font-size: 17px; line-height: 1.85; margin: 0 0 26px; max-width: 520px; }
+
+    .form-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .field-label { display: block; font-size: 14px; font-weight: 700; margin-bottom: 10px; }
+
+    .name-input {
+      width: 100%;
+      border: 2px solid var(--line);
+      border-radius: 15px;
+      padding: 14px 16px;
+      font-size: 16px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #fcfcff;
+    }
+    .name-input::placeholder { color: #aeb4cc; }
+    .name-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.12); }
+
+    .levels { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 20px; }
+
+    .diffs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .diff-btn {
+      background: #fff;
+      border: 2px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 6px;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--ink);
+      transition: 0.2s;
+    }
+    .diff-btn:hover { border-color: #c7c0ff; }
+    .diff-btn.active { border-color: var(--primary); background: #f5f2ff; color: var(--primary-dark); box-shadow: 0 6px 16px rgba(108, 92, 231, 0.14); }
+
+    .chapter-select {
+      width: 100%;
+      border: 2px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+      background: #fcfcff;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+      background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+      background-position: left 18px center, left 13px center;
+      background-size: 5px 5px, 5px 5px;
+      background-repeat: no-repeat;
+      padding-left: 36px;
+    }
+    .chapter-select:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.12); }
+
+    .level-btn {
+      background: #fff;
+      border: 2px solid var(--line);
+      border-radius: 17px;
+      padding: 13px 6px 11px;
+      text-align: center;
+      color: var(--ink);
+      transition: 0.2s;
+      line-height: 1.4;
+    }
+    .level-btn:hover { border-color: #c7c0ff; transform: translateY(-2px); }
+    .level-btn .ico { display: block; font-size: 24px; margin-bottom: 4px; }
+    .level-btn .t { display: block; font-weight: 700; font-size: 14px; }
+    .level-btn small { display: block; color: var(--muted); font-size: 11px; }
+    .level-btn.active { border-color: var(--primary); background: #f5f2ff; box-shadow: 0 8px 20px rgba(108, 92, 231, 0.14); }
+    .level-btn.active small { color: var(--primary-dark); }
+
+    .btn {
+      border: 0;
+      border-radius: 15px;
+      padding: 15px 22px;
+      font-weight: 800;
+      font-size: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+    }
+    .btn-primary {
+      color: #fff;
+      background: linear-gradient(110deg, #6c5ce7, #8a6bff);
+      box-shadow: 0 12px 26px rgba(108, 92, 231, 0.32);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 32px rgba(108, 92, 231, 0.38); }
+    .btn-ghost { background: #f1f2f9; color: var(--ink); }
+    .btn-ghost:hover { background: #e9eaf5; }
+    .btn-block { width: 100%; margin-top: 20px; }
+
+    .best-note { margin-top: 12px; font-size: 13px; color: var(--muted); text-align: center; min-height: 20px; }
+    .best-note b { color: var(--primary-dark); }
+
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+    .chips span {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 13px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .art { position: relative; width: 100%; filter: drop-shadow(0 24px 40px rgba(60, 55, 130, 0.14)); }
+    .art svg { width: 100%; height: auto; display: block; }
+
+    /* ---------- Quiz ---------- */
+    .quiz-shell { max-width: 820px; margin-inline: auto; padding: 18px 0 70px; }
+
+    .quiz-head { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 18px; }
+    .hello { display: inline-flex; align-items: center; gap: 9px; font-size: 14px; color: var(--muted); }
+    .hello b { color: var(--ink); }
+    .hello-avatar { width: 34px; height: 34px; border-radius: 12px; object-fit: cover; border: 2px solid #fff; box-shadow: 0 6px 16px rgba(40, 44, 96, 0.14); }
+
+    .timer {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 14px 7px 9px;
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+      box-shadow: var(--shadow-sm);
+    }
+    .timer svg { width: 34px; height: 34px; transform: rotate(-90deg); }
+    .timer .track { fill: none; stroke: #eceefa; stroke-width: 4; }
+    .timer .bar { fill: none; stroke: var(--primary); stroke-width: 4; stroke-linecap: round; transition: stroke-dashoffset 1s linear, stroke 0.3s; }
+    .timer.low .bar { stroke: var(--danger); }
+    .timer.low { color: var(--danger); }
+
+    .progress-track { height: 10px; border-radius: 999px; background: #e9ebf6; overflow: hidden; margin-bottom: 20px; }
+    .progress-fill { height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, #6c5ce7, #a36bff); transition: width 0.45s ease; }
+
+    .q-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: clamp(20px, 4vw, 36px);
+      box-shadow: var(--shadow);
+    }
+
+    .q-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 22px; }
+    .q-badge { background: #f1eeff; color: var(--primary-dark); font-weight: 800; font-size: 13px; border-radius: 999px; padding: 8px 15px; }
+    .q-meta { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--muted); font-weight: 600; }
+    .dots { display: inline-flex; gap: 4px; }
+    .dots i { width: 7px; height: 7px; border-radius: 50%; background: #dfe2f0; }
+    .dots i.on { background: var(--primary); }
+
+    .question-text { font-size: clamp(21px, 3.2vw, 29px); font-weight: 700; line-height: 1.75; margin: 0 0 26px; }
+    .question-text .math { display: inline-block; direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
+
+    .choices { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+    .choice {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-align: right;
+      background: #fff;
+      border: 2px solid var(--line);
+      border-radius: 18px;
+      padding: 15px 17px;
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 17px;
+      transition: transform 0.18s, border-color 0.18s, background 0.18s, opacity 0.18s;
+    }
+    .choice:hover:not(.is-correct):not(.is-wrong):not(.is-dim) { border-color: #c7c0ff; transform: translateY(-2px); }
+    .choice .key {
+      width: 38px; height: 38px; flex: 0 0 38px;
+      border-radius: 12px;
+      background: #f0f1f8;
+      color: var(--muted);
+      display: grid; place-items: center;
+      font-size: 14px; font-weight: 800;
+      transition: 0.18s;
+    }
+    .choice > span:last-child { unicode-bidi: plaintext; }
+    .choice.is-correct { border-color: var(--mint); background: #ebfaf5; }
+    .choice.is-correct .key { background: var(--mint); color: #fff; }
+    .choice.is-wrong { border-color: var(--danger); background: #fff0f2; }
+    .choice.is-wrong .key { background: var(--danger); color: #fff; }
+    .choice.is-dim { opacity: 0.5; }
+
+    .feedback {
+      display: none;
+      gap: 13px;
+      align-items: flex-start;
+      margin-top: 20px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: #f2fbf8;
+      border: 1px solid #cdecdf;
+      animation: fadeUp 0.3s ease both;
+    }
+    .feedback.show { display: flex; }
+    .feedback.bad { background: #fff6f6; border-color: #ffdadd; }
+    .feedback .ficon { font-size: 24px; line-height: 1; margin-top: 2px; }
+    .feedback strong { display: block; margin-bottom: 4px; }
+    .feedback p { margin: 0; color: #5b6480; font-size: 14px; line-height: 1.75; }
+
+    .q-footer { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-top: 24px; }
+    .hint { color: var(--muted); font-size: 12.5px; line-height: 1.7; }
+    .hint kbd { background: #f0f1f8; border-radius: 6px; padding: 2px 6px; font-family: inherit; font-size: 11px; font-weight: 700; color: var(--ink); }
+    .next-btn { min-width: 150px; }
+    [hidden] { display: none !important; }
+
+    /* ---------- Result ---------- */
+    .result-shell { max-width: 820px; margin-inline: auto; padding: 18px 0 70px; }
+    .result-hero { background: #fff; border: 1px solid var(--line); border-radius: 28px; padding: 34px 24px; text-align: center; box-shadow: var(--shadow); }
+
+    .score-ring {
+      --pct: 0;
+      width: 178px; height: 178px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: conic-gradient(var(--primary) calc(var(--pct) * 1%), #edeff8 0);
+      display: grid; place-items: center;
+      position: relative;
+      transition: background 0.8s ease;
+    }
+    .score-ring::before { content: ''; position: absolute; inset: 14px; background: #fff; border-radius: 50%; }
+    .score-ring .inner { position: relative; z-index: 1; }
+    .score-ring .num { font-size: 50px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+    .score-ring .den { color: var(--muted); font-size: 13px; margin-top: 4px; }
+
+    .result-title { font-size: 27px; font-weight: 800; margin: 0 0 8px; }
+    .result-sub { color: var(--muted); margin: 0; line-height: 1.8; }
+
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 28px; }
+    .stat { background: #f8f9fd; border: 1px solid var(--line); border-radius: 17px; padding: 15px 8px; }
+    .stat .v { font-size: 22px; font-weight: 800; font-variant-numeric: tabular-nums; }
+    .stat .l { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+    .review { background: #fff; border: 1px solid var(--line); border-radius: 24px; padding: 6px 22px; margin-top: 20px; box-shadow: var(--shadow-sm); }
+    .review h3 { font-size: 17px; margin: 16px 0 4px; }
+    .review details { border-bottom: 1px solid var(--line); }
+    .review details:last-of-type { border-bottom: 0; }
+    .review summary { list-style: none; cursor: pointer; padding: 15px 0; display: flex; align-items: center; gap: 11px; font-weight: 600; font-size: 14.5px; }
+    .review summary::-webkit-details-marker { display: none; }
+    .review summary .sq { flex: 1; }
+    .status-dot { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 10px; }
+    .status-dot.ok { background: var(--mint); }
+    .status-dot.no { background: var(--danger); }
+    .mini-tag { font-size: 11px; font-weight: 700; border-radius: 999px; padding: 4px 9px; background: #f1f2f8; color: var(--muted); white-space: nowrap; }
+    .mini-tag.ok { background: #e6f9f2; color: #087a61; }
+    .mini-tag.no { background: #ffeff1; color: #c33d4d; }
+    .review-body { padding: 0 0 16px 21px; color: #5b6480; font-size: 13.5px; line-height: 1.8; }
+    .review-body p { margin: 6px 0 0; background: #f8f9fd; border-radius: 12px; padding: 11px 14px; }
+
+    .actions { display: flex; gap: 12px; margin-top: 22px; }
+    .actions .btn { flex: 1; }
+
+    .confetti { position: fixed; top: -20px; width: 9px; height: 14px; z-index: 50; pointer-events: none; border-radius: 2px; animation: fall 2.6s linear forwards; }
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(720deg); opacity: 0.2; }
+    }
+
+    @media (max-width: 780px) {
+      .hero { grid-template-columns: 1fr; gap: 8px; padding-top: 10px; }
+      .art { order: -1; max-width: 380px; margin-inline: auto; }
+      .top-note { display: none; }
+      .levels { grid-template-columns: repeat(3, 1fr); }
+      .choices { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .actions { flex-direction: column; }
+      .q-footer { align-items: stretch; flex-direction: column-reverse; }
+      .next-btn { width: 100%; }
+    }
+
+    @media (max-width: 380px) {
+      .levels { gap: 6px; }
+      .level-btn { padding-inline: 2px; }
+      .level-btn small { font-size: 10px; }
+      .hint { font-size: 11.5px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark"><img src="avatar.svg" alt="عکس پروفایل ریاضیار" /></div>
+        <div>
+          <div class="brand-name">ریاضیار</div>
+          <div class="brand-sub">تست کوتاه، یادگیری ماندگار</div>
+        </div>
+      </div>
+      <div class="top-note"><span class="dot"></span> کاملاً رایگان · بدون ثبتنام</div>
+    </header>
+
+    <!-- ============ LANDING ============ -->
+    <main id="landing" class="screen active">
+      <section class="hero">
+        <div>
+          <div class="eyebrow">🎯 تمرین هوشمند ریاضی</div>
+          <h1>ریاضی رو <span class="grad">بازی</span> کنیم!</h1>
+          <p class="lead">۱۰ سوال کوتاه، بدون استرس. امتیاز بگیر، توضیح هر سوال رو ببین و بفهم کجای کارت قویتره.</p>
+
+          <div class="form-card">
+            <label class="field-label" for="studentName">اسم شما چیه؟</label>
+            <input id="studentName" class="name-input" type="text" maxlength="30" placeholder="مثلاً: آریا" autocomplete="name" />
+
+            <div class="field-label" style="margin-top:20px">کلاست رو انتخاب کن</div>
+            <div class="levels" role="group" aria-label="انتخاب کلاس">
+              <button class="level-btn active" data-level="g1" type="button"><span class="ico">۱</span><span class="t">اول</span><small>کلاس ۱</small></button>
+              <button class="level-btn" data-level="g2" type="button"><span class="ico">۲</span><span class="t">دوم</span><small>کلاس ۲</small></button>
+              <button class="level-btn" data-level="g3" type="button"><span class="ico">۳</span><span class="t">سوم</span><small>کلاس ۳</small></button>
+              <button class="level-btn" data-level="g4" type="button"><span class="ico">۴</span><span class="t">چهارم</span><small>کلاس ۴</small></button>
+              <button class="level-btn" data-level="g5" type="button"><span class="ico">۵</span><span class="t">پنجم</span><small>کلاس ۵</small></button>
+              <button class="level-btn" data-level="g6" type="button"><span class="ico">۶</span><span class="t">ششم</span><small>کلاس ۶</small></button>
+              <button class="level-btn" data-level="g7" type="button"><span class="ico">۷</span><span class="t">هفتم</span><small>کلاس ۷</small></button>
+              <button class="level-btn" data-level="g8" type="button"><span class="ico">۸</span><span class="t">هشتم</span><small>کلاس ۸</small></button>
+              <button class="level-btn" data-level="g9" type="button"><span class="ico">۹</span><span class="t">نهم</span><small>کلاس ۹</small></button>
+            </div>
+
+            <div class="field-label" style="margin-top:18px">درجه سختی</div>
+            <div class="diffs" role="group" aria-label="درجه سختی سوالات">
+              <button class="diff-btn active" data-diff="easy" type="button">🌱 آسان</button>
+              <button class="diff-btn" data-diff="medium" type="button">🚀 متوسط</button>
+              <button class="diff-btn" data-diff="hard" type="button">🧠 چالشی</button>
+            </div>
+
+            <div class="field-label" style="margin-top:18px">فصل درسی</div>
+            <select id="chapterSelect" class="chapter-select" aria-label="انتخاب فصل درسی"></select>
+
+            <button id="startBtn" class="btn btn-primary btn-block" type="button">شروع تست <span aria-hidden="true">←</span></button>
+            <button id="installBtn" class="btn btn-ghost btn-block" type="button" hidden>📲 نصب اپ ریاضیار</button>
+            <div id="installHint" class="best-note" hidden>برای نصب روی آیفون: دکمه اشتراکگذاری ⬆️ را بزن و «Add to Home Screen» را انتخاب کن.</div>
+            <div id="bestNote" class="best-note" role="status"></div>
+          </div>
+
+          <div class="chips">
+            <span>⚡ نتیجه فوری</span>
+            <span>💡 توضیح کامل هر سوال</span>
+            <span>📱 مناسب موبایل</span>
+          </div>
+        </div>
+
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 420 360" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="blob" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ded7ff"/><stop offset="1" stop-color="#c9f5e8"/>
+              </linearGradient>
+              <linearGradient id="cardg" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#f7f6ff"/>
+              </linearGradient>
+            </defs>
+            <path d="M92 62c46-36 128-42 183-17 56 26 88 84 74 140-13 56-72 106-137 111-66 6-139-27-160-83C29 157 46 98 92 62Z" fill="url(#blob)" opacity="0.75"/>
+            <g transform="rotate(-5 210 185)">
+              <rect x="72" y="70" width="276" height="224" rx="30" fill="url(#cardg)"/>
+              <rect x="96" y="94" width="228" height="76" rx="17" fill="#f0edff"/>
+              <text x="210" y="142" text-anchor="middle" font-family="Vazirmatn, Segoe UI, sans-serif" font-size="29" font-weight="800" fill="#5b48de" direction="ltr">7 × 8 = 56</text>
+              <circle cx="172" cy="214" r="8" fill="#2b2f57"/>
+              <circle cx="248" cy="214" r="8" fill="#2b2f57"/>
+              <circle cx="175" cy="211" r="2.6" fill="#fff"/>
+              <circle cx="251" cy="211" r="2.6" fill="#fff"/>
+              <path d="M186 238c12 13 36 13 48 0" fill="none" stroke="#2b2f57" stroke-width="5" stroke-linecap="round"/>
+              <circle cx="120" cy="266" r="6" fill="#ffd070"/>
+              <circle cx="300" cy="266" r="6" fill="#ff9b9b"/>
+            </g>
+            <g font-family="Vazirmatn, Segoe UI, sans-serif" font-weight="800" text-anchor="middle">
+              <circle cx="62" cy="88" r="26" fill="#fff"/><text x="62" y="98" font-size="26" fill="#6c5ce7">+</text>
+              <circle cx="358" cy="104" r="30" fill="#fff"/><text x="358" y="113" font-size="26" fill="#00b894">√</text>
+              <circle cx="54" cy="268" r="22" fill="#fff"/><text x="54" y="277" font-size="22" fill="#ff9f43">π</text>
+              <circle cx="372" cy="276" r="24" fill="#fff"/><text x="372" y="284" font-size="22" fill="#6c5ce7">=</text>
+              <circle cx="334" cy="34" r="15" fill="#fff"/><text x="334" y="40" font-size="16" fill="#ef5b6b">÷</text>
+            </g>
+          </svg>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ QUIZ ============ -->
+    <main id="quiz" class="screen">
+      <div class="quiz-shell">
+        <div class="quiz-head">
+          <div class="hello"><img class="hello-avatar" src="avatar.svg" alt="" /><span>سلام <b id="quizName">دانشآموز</b> 👋</span></div>
+          <div id="timer" class="timer" aria-label="زمان باقیمانده">
+            <svg viewBox="0 0 40 40" aria-hidden="true">
+              <circle class="track" cx="20" cy="20" r="16"></circle>
+              <circle id="timerBar" class="bar" cx="20" cy="20" r="16" stroke-dasharray="100.53" stroke-dashoffset="0"></circle>
+            </svg>
+            <span id="timerText">۳۰ ث</span>
+          </div>
+        </div>
+
+        <div class="progress-track" aria-hidden="true"><div id="progressFill" class="progress-fill"></div></div>
+
+        <section class="q-card" aria-live="polite">
+          <div class="q-head">
+            <span id="qBadge" class="q-badge">سوال ۱ از ۱۰</span>
+            <span class="q-meta"><span id="levelLabel">کلاس اول · آسان</span> <span id="dots" class="dots" aria-hidden="true"></span></span>
+          </div>
+
+          <h2 id="questionText" class="question-text"></h2>
+          <div id="choices" class="choices" role="group" aria-label="گزینههای پاسخ"></div>
+
+          <div id="feedback" class="feedback" role="status">
+            <span id="fbIcon" class="ficon" aria-hidden="true"></span>
+            <div><strong id="fbTitle"></strong><p id="fbText"></p></div>
+          </div>
+
+          <div class="q-footer">
+            <div class="hint">کلیدهای <kbd>۱</kbd> تا <kbd>۴</kbd> برای انتخاب · <kbd>Enter</kbd> برای سوال بعدی</div>
+            <button id="nextBtn" class="btn btn-primary next-btn" type="button" hidden>سوال بعدی ←</button>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- ============ RESULT ============ -->
+    <main id="result" class="screen">
+      <div class="result-shell">
+        <section class="result-hero">
+          <div id="scoreRing" class="score-ring" role="img" aria-label="درصد نتیجه">
+            <div class="inner"><div id="scoreNum" class="num">0</div><div class="den">از ۱۰۰ امتیاز</div></div>
+          </div>
+          <h2 id="resultTitle" class="result-title">عالی کار کردی!</h2>
+          <p id="resultSub" class="result-sub"></p>
+
+          <div class="stats">
+            <div class="stat"><div id="stCorrect" class="v">0</div><div class="l">پاسخ درست</div></div>
+            <div class="stat"><div id="stWrong" class="v">0</div><div class="l">پاسخ نادرست</div></div>
+            <div class="stat"><div id="stTime" class="v">00:00</div><div class="l">زمان صرفشده</div></div>
+            <div class="stat"><div id="stStreak" class="v">0</div><div class="l">بهترین زنجیره</div></div>
+          </div>
+        </section>
+
+        <section class="review">
+          <h3>🔍 مرور سوالات</h3>
+          <div id="reviewList"></div>
+        </section>
+
+        <div class="actions">
+          <button id="againBtn" class="btn btn-primary" type="button">یک بار دیگه ←</button>
+          <button id="homeBtn" class="btn btn-ghost" type="button">تغییر کلاس و سختی</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const $ = (s) => document.querySelector(s);
+    const $$ = (s) => [...document.querySelectorAll(s)];
+
+    const LEVEL_LABEL = { g1:'اول', g2:'دوم', g3:'سوم', g4:'چهارم', g5:'پنجم', g6:'ششم', g7:'هفتم', g8:'هشتم', g9:'نهم' };
+    const DIFF_LABEL = { easy:'آسان', medium:'متوسط', hard:'چالشی' };
+    const LEVEL_DOTS = { easy:1, medium:2, hard:3 };
+    const TIME_PER_Q = 30;
+
+    // ---------- بانک سوالات: کلاس اول تا نهم × سه درجه سختی ----------
+    const fd = (n) => String(n).replace(/-(\d+)/g, '$1-').replace(/\d/g, (d) => '۰۱۲۳۴۵۶۷۸۹'[+d]);
+    const E = (s) => `<span class="math">${fd(s)}</span>`;
+    const Q = (q, options, answer, exp) => ({ q, options: options.map((o) => fd(String(o))), answer: fd(String(answer)), exp: fd(String(exp)) });
+
+    function opts(ans, deltas, allowNeg = false) {
+      const set = new Set();
+      for (const d of deltas) {
+        const v = ans + d;
+        if (v !== ans && (allowNeg || v >= 0)) set.add(v);
+      }
+      let k = 1;
+      while (set.size < 3 && k < 200) {
+        const v = allowNeg ? ans + k : Math.max(0, ans + k);
+        if (v !== ans) set.add(v);
+        k++;
+      }
+      return [ans, ...[...set].slice(0, 3)];
+    }
+
+    const addQ = (a, b) => Q(`حاصل ${E(a + ' + ' + b)} چقدر است؟`, opts(a + b, [1, -1, 10]), a + b, `${a} + ${b} = ${a + b}.`);
+    const subQ = (a, b) => Q(`حاصل ${E(a + ' − ' + b)} چقدر است؟`, opts(a - b, [1, -1, 10]), a - b, `${a} − ${b} = ${a - b}.`);
+    const mulQ = (a, b) => Q(`حاصل ${E(a + ' × ' + b)} چقدر است؟`, opts(a * b, [a, -a, 10]), a * b, `${a} × ${b} = ${a * b}.`);
+    const divQ = (a, b) => Q(`حاصل ${E(a + ' ÷ ' + b)} چقدر است؟`, opts(a / b, [1, -1, b]), a / b, `${a} ÷ ${b} = ${a / b}.`);
+    const cmpQ = (a, b) => {
+      const hi = Math.max(a, b), lo = Math.min(a, b);
+      return Q(`کدام عدد بزرگتر است؟ ${E(a + ' یا ' + b)}`, [hi, lo, hi + 10, hi + 20], hi, `${hi} از ${lo} بزرگتر است.`);
+    };
+    const seqQ = (start, step) => {
+      const ans = start + 4 * step;
+      return Q(`عدد بعدی در الگوی ${E([start, start + step, start + 2 * step, start + 3 * step].join('، '))}، ... چقدر است؟`, opts(ans, [step, -step, 1]), ans, `هر بار ${step} اضافه میشود؛ ${start + 3 * step} + ${step} = ${ans}.`);
+    };
+    const fracQ = (n, d, whole) => {
+      const ans = whole / d * n;
+      return Q(`${E(n + '/' + d)} از ${E(whole)} چقدر است؟`, opts(ans, [n, -n, d]), ans, `${whole} ÷ ${d} = ${whole / d} و ${whole / d} × ${n} = ${ans}.`);
+    };
+    const pctQ = (p, whole) => {
+      const ans = p * whole / 100;
+      return Q(`${E(p + '٪')} از ${E(whole)} چقدر است؟`, opts(ans, [p, -p, 10]), ans, `${p}٪ یعنی ${p / 100}؛ ${whole} × ${p / 100} = ${ans}.`);
+    };
+    const rectQ = (w, h, kind) => kind === 'area'
+      ? Q(`مساحت مستطیلی به ابعاد ${E(w + ' × ' + h)} چقدر است؟`, opts(w * h, [w, -w, h]), w * h, `مساحت = ${w} × ${h} = ${w * h}.`)
+      : Q(`محیط مستطیلی به ابعاد ${E(w + ' × ' + h)} چقدر است؟`, opts(2 * (w + h), [2, -2, w]), 2 * (w + h), `محیط = ۲ × (${w} + ${h}) = ${2 * (w + h)}.`);
+    const linQ = (a, b, x) => Q(`معادله ${E(a + 'x + ' + b + ' = ' + (a * x + b))} را حل کنید.`, opts(x, [1, -1, 2]), x, `${a}x = ${a * x} ⟹ x = ${x}.`);
+    const meanQ = (a) => {
+      const s = a.reduce((x, y) => x + y, 0), ans = s / a.length;
+      return Q(`میانگین اعداد ${E(a.join('، '))} چقدر است؟`, opts(ans, [1, -1, 2]), ans, `مجموع ${s} ÷ ${a.length} = ${ans}.`);
+    };
+    const intQ = (a, b) => Q(`حاصل ${E(a + ' + (' + b + ')')} چقدر است؟`, opts(a + b, [1, -1, 10], true), a + b, `${a} + (${b}) = ${a + b}.`);
+    const wordQ = (a, b, item) => Q(`علی ${a} تا ${item} داشت و ${b} تا هم خرید. الان چند تا ${item} دارد؟`, opts(a + b, [1, -1, 10]), a + b, `${a} + ${b} = ${a + b}.`);
+    const shapeQ = (name, sides) => Q(`تعداد اضلاع ${name} چقدر است؟`, opts(sides, [1, -1, 2]), sides, `${name} ${sides} ضلع دارد.`);
+    const simpQ = (a, b) => {
+      const ans = a + b;
+      return Q(`جمله ${E(a + 'x + ' + b + 'x')} را ساده کنید.`, [ans + 'x', (ans + 1) + 'x', (ans - 1) + 'x', (ans + 2) + 'x'], ans + 'x', `ضرایب را جمع میکنیم: ${a} + ${b} = ${ans}.`);
+    };
+    const quadQ = (r1, r2) => {
+      const s = r1 + r2, p = r1 * r2, ans = `x = ${r1} یا ${r2}`;
+      return Q(`ریشههای معادله ${E('x² − ' + s + 'x + ' + p + ' = ۰')} کداماند؟`, [ans, `x = ${r1} و ${r2}`, `x = ${-r1} یا ${-r2}`, `x = ${p}`], ans, `تجزیه: (x−${r1})(x−${r2}) = ۰.`);
+    };
+
+    // ---------- کارخانه سوالهای اختصاصی هر فصل ----------
+    const angleQ = (a, b) => Q(`در مثلثی دو زاویه ${E(a + '° و ' + b + '°')} است. زاویه سوم چقدر است؟`, opts(180 - a - b, [10, -10, 20]), 180 - a - b, `مجموع زوایای مثلث ۱۸۰ است: ۱۸۰ − ${a} − ${b} = ${180 - a - b}.`);
+    const pythQ = (a, b, c) => Q(`در مثلث قائمالزاویهای دو ضلع مجاور زاویه قائمه ${E(a + ' و ' + b)}اند. وتر چقدر است؟`, opts(c, [1, -1, 2]), c, `${a}² + ${b}² = ${a * a + b * b} و ریشه آن ${c} است.`);
+    const powQ = (b, e1, e2) => {
+      const ans = Math.pow(b, e1 + e2);
+      return Q(`حاصل ${E(b + '^' + e1 + ' × ' + b + '^' + e2)} چقدر است؟`, opts(ans, [b, -b, b * b]), ans, `پایهها یکساناند؛ توانها جمع میشوند: ${b}^${e1 + e2} = ${ans}.`);
+    };
+    const rootQ = (b) => Q(`ریشه دوم عدد ${E(b * b)} چقدر است؟`, opts(b, [1, -1, 2]), b, `زیرا ${b} × ${b} = ${b * b} است.`);
+    const expandQ = (a) => {
+      const ans = `x² + ${2 * a}x + ${a * a}`;
+      return Q(`حاصل ${E('(x + ' + a + ')²')} چقدر است؟`, [ans, `x² + ${a}x + ${a * a}`, `x² + ${2 * a}x + ${a}`, `x² + ${a * a}`], ans, `اتحاد مربع جمع: (x+${a})² = x² + ${2 * a}x + ${a * a}.`);
+    };
+    const diffSquareQ = (a) => {
+      const ans = `x² − ${a * a}`;
+      return Q(`حاصل ${E('(x − ' + a + ')(x + ' + a + ')')} چقدر است؟`, [ans, `x² + ${a * a}`, `x² − ${2 * a}x + ${a * a}`, `x² + ${2 * a}x + ${a * a}`], ans, `اتحاد تفاضل مربعات: x² − ${a * a}.`);
+    };
+    const funcQ = (m, b, x) => {
+      const y = m * x + b;
+      return Q(`در تابع ${E('y = ' + m + 'x + ' + b)} اگر ${E('x = ' + x)} باشد y چقدر است؟`, opts(y, [m, -m, 1]), y, `جایگذاری: ${m} × ${x} + ${b} = ${y}.`);
+    };
+    const probQ = (p) => Q(`اگر احتمال باران باریدن ${E(p + '٪')} باشد، احتمال نباریدن چقدر است؟`, [p + '٪', (100 - p) + '٪', (p + 10) + '٪', (p - 10) + '٪'], (100 - p) + '٪', `احتمال مکمل = ۱۰۰٪ − ${p}٪ = ${100 - p}٪.`);
+    const varQ = (a, gap) => {
+      const b = a + gap, m = a + gap / 2, ans = (gap * gap) / 4;
+      return Q(`واریانس دو عدد ${E(a + ' و ' + b)} چقدر است؟`, opts(ans, [1, -1, 2]), ans, `میانگین ${m} است؛ میانگین مربع انحرافها ${ans} میشود.`);
+    };
+    const deltaQ = (b, c) => {
+      const delta = b * b - 4 * c;
+      return Q(`دلتای معادله ${E('x² + ' + b + 'x + ' + c + ' = ۰')} چقدر است؟`, opts(delta, [1, -1, 4]), delta, `Δ = ${b}² − ۴ × ۱ × ${c} = ${delta}.`);
+    };
+    const vertexQ = (x, c) => {
+      const b = -2 * x, y = c, ans = `(${x}، ${y})`;
+      return Q(`رأس سهمی ${E('x² ' + (b < 0 ? '− ' + (-b) : '+ ' + b) + 'x + ' + c)} کدام نقطه است؟`, [ans, `(${x}، ${-y})`, `(${-x}، ${y})`, `(${b}، ${c})`], ans, `xرأس = −b/(2a) = ${x} و y = ${y}.`);
+    };
+
+    const CHAPTERS = {
+      g1: [{ id:'count', label:'شمارش و اعداد' }, { id:'calc', label:'جمع و تفریق' }, { id:'shape', label:'اشکال و الگوها' }],
+      g2: [{ id:'count', label:'اعداد تا ۱۰۰' }, { id:'calc', label:'جمع و تفریق' }, { id:'shape', label:'الگوها و اشکال' }],
+      g3: [{ id:'calc', label:'ضرب و تقسیم' }, { id:'fraction', label:'کسرها' }, { id:'shape', label:'هندسه و اندازه گیری' }],
+      g4: [{ id:'calc', label:'عملیات چهارگانه' }, { id:'fraction', label:'کسرها' }, { id:'geometry', label:'مساحت و محیط' }],
+      g5: [{ id:'fraction', label:'کسرها' }, { id:'decimalPercent', label:'تناسب و درصد' }, { id:'geometry', label:'هندسه' }],
+      g6: [{ id:'algebra', label:'جبر و معادله' }, { id:'decimalPercent', label:'کسر و درصد' }, { id:'stats', label:'آمار و احتمال' }],
+      g7: [{ id:'algebra', label:'عدد و جبر' }, { id:'fraction', label:'کسر، نسبت و درصد' }, { id:'geometry', label:'هندسه' }, { id:'stats', label:'آمار و احتمال' }],
+      g8: [{ id:'power', label:'توان و ریشه' }, { id:'identity', label:'عبارات جبری' }, { id:'func', label:'معادله و تابع' }, { id:'geometry', label:'هندسه' }, { id:'stats', label:'آمار' }],
+      g9: [{ id:'algebra', label:'معادلات و عبارتها' }, { id:'quad', label:'معادله درجه دوم' }, { id:'func', label:'توابع' }, { id:'geometry', label:'هندسه و مثلثات' }, { id:'stats', label:'آمار و احتمال' }]
+    };
+
+    const PYTH_TRIPLES = [[3, 4, 5], [5, 12, 13], [6, 8, 10], [8, 15, 17], [9, 12, 15]];
+
+    const TOPIC = {
+      count: (R, d) => {
+        const q = [], cap = [12, 25, 60][d];
+        for (let i = 0; i < 4; i++) q.push(addQ(R(i + 1, 1, Math.floor(cap / 2), 5), R(i + 7, 1, Math.floor(cap / 2), 3)));
+        for (let i = 0; i < 3; i++) {
+          let a = R(i + 2, Math.floor(cap / 3) + 1, cap, 11), b = R(i + 5, 1, Math.floor(cap / 2), 7);
+          if (b > a) [a, b] = [b, a];
+          q.push(subQ(a, b));
+        }
+        for (let i = 0; i < 2; i++) { const a = R(i + 3, 1, cap, 13), b = R(i + 9, 1, cap, 17); q.push(cmpQ(a, b === a ? b + 1 : b)); }
+        q.push(seqQ([1, 2, 3][d], [1, 2, 3][d]));
+        return q;
+      },
+      calc: (R, d) => {
+        const q = [];
+        for (let i = 0; i < 3; i++) q.push(mulQ(R(i + 1, 2, 9, 5), R(i + 4, 2, 9, 3)));
+        for (let i = 0; i < 2; i++) { const b = R(i + 2, 2, 9, 11); q.push(divQ(b * R(i + 6, 2, 12, 7), b)); }
+        for (let i = 0; i < 2; i++) q.push(addQ(R(i + 3, 20, 99, 13), R(i + 7, 10, 80, 17)));
+        for (let i = 0; i < 2; i++) q.push(subQ(R(i + 4, 40, 99, 19), R(i + 1, 1, 39, 23)));
+        q.push(wordQ(R(3, 5, 30, 29), R(7, 4, 25, 31), ['سیب', 'مداد', 'کتاب'][d]));
+        return q;
+      },
+      shape: (R, d) => {
+        const q = [];
+        q.push(shapeQ(['مثلث', 'مربع', 'پنجضلعی'][d], [3, 4, 5][d]));
+        q.push(shapeQ(['چهارضلعی', 'مستطیل', 'ششضلعی'][d], [4, 4, 6][d]));
+        for (let i = 0; i < 3; i++) q.push(rectQ(R(i + 1, 2, 12, 5), R(i + 3, 2, 10, 7), i % 2 ? 'perimeter' : 'area'));
+        for (let i = 0; i < 2; i++) q.push(angleQ(R(i + 2, 30, 70, 11), R(i + 5, 40, 80, 13)));
+        for (let i = 0; i < 2; i++) { const t = PYTH_TRIPLES[(i + d) % PYTH_TRIPLES.length]; q.push(pythQ(t[0], t[1], t[2])); }
+        q.push(seqQ(d + 1, d + 2));
+        return q;
+      },
+      fraction: (R, d) => {
+        const q = [];
+        for (let i = 0; i < 8; i++) {
+          const den = [2, 3, 4, 5, 6, 8, 10, 12][(i + d) % 8];
+          q.push(fracQ(R(i + 1, 1, den - 1, 5), den, den * R(i + 3, 2, 9, 7)));
+        }
+        for (let i = 0; i < 2; i++) { const b = R(i + 2, 2, 9, 11); q.push(divQ(b * R(i + 6, 2, 12, 13), b)); }
+        return q;
+      },
+      decimalPercent: (R, d) => {
+        const q = [];
+        for (let i = 0; i < 4; i++) q.push(pctQ([10, 20, 25, 40][(i + d) % 4], 20 * R(i + 1, 1, 5, 11)));
+        for (let i = 0; i < 4; i++) {
+          const den = i % 2 ? 100 : 10;
+          q.push(fracQ(R(i + 2, 1, den - 1, 13), den, den * R(i + 4, 1, 6, 17)));
+        }
+        for (let i = 0; i < 2; i++) q.push(divQ(R(i + 3, 10, 90, 19) * 10, 10));
+        return q;
+      },
+      algebra: (R, d) => {
+        const q = [];
+        for (let i = 0; i < 3; i++) q.push(linQ(R(i + 1, 2, 6, 5), R(i + 3, 1, 9, 7), R(i + 5, 2, 8, 11)));
+        for (let i = 0; i < 3; i++) q.push(simpQ(R(i + 2, 2, 8, 13), R(i + 4, 1, 6, 17)));
+        for (let i = 0; i < 2; i++) q.push(intQ(R(i + 2, 1, 12, 19), -R(i + 6, 1, 15, 23)));
+        for (let i = 0; i < 2; i++) q.push(wordQ(R(i + 3, 5, 25, 29), R(i + 7, 4, 20, 31), ['مداد', 'کتاب'][i]));
+        return q;
+      },
+      power: (R, d) => {
+        const q = [];
+        for (let i = 0; i < 4; i++) q.push(powQ(R(i + 1, 2, 5, 5), R(i + 2, 1, 3, 7), R(i + 4, 1, 3, 11)));
+        for (let i = 0; i < 3; i++) q.push(rootQ(R(i + 3, 3, 12, 13)));
+        for (let i = 0; i < 3; i++) q.push(mulQ(R(i + 2, 2, 9, 17), R(i + 5, 2, 9, 19)));
+        return q;
+      },
+      identity: (R, d) => {
+        const q = [];
+        for (let i = 0; i < 4; i++) q.push(expandQ(R(i + 1, 2, 7, 5)));
+        for (let i = 0; i < 3; i++) q.push(diffSquareQ(R(i + 2, 2, 8, 7)));
+        for (let i = 0; i < 3; i++) q.push(simpQ(R(i + 3, 2, 9, 11), R(i + 5, 1, 7, 13)));
+        return q;
+      },
+      func: (R, d) => {
+        const q = [];
+        for (let i = 0; i < 5; i++) q.push(funcQ(R(i + 1, 2, 5, 5), R(i + 3, 1, 9, 7), R(i + 5, 1, 6, 11)));
+        for (let i = 0; i < 5; i++) q.push(linQ(R(i + 2, 2, 6, 13), R(i + 4, 1, 8, 17), R(i + 6, 1, 7, 19)));
+        return q;
+      },
+      geometry: (R, d) => {
+        const q = [];
+        for (let i = 0; i < 3; i++) q.push(rectQ(R(i + 1, 3, 15, 5), R(i + 3, 2, 12, 7), 'area'));
+        for (let i = 0; i < 2; i++) q.push(rectQ(R(i + 2, 3, 12, 11), R(i + 4, 2, 10, 13), 'perimeter'));
+        for (let i = 0; i < 2; i++) q.push(angleQ(R(i + 2, 30, 70, 17), R(i + 5, 40, 80, 19)));
+        for (let i = 0; i < 2; i++) { const t = PYTH_TRIPLES[(i + d + 1) % PYTH_TRIPLES.length]; q.push(pythQ(t[0], t[1], t[2])); }
+        q.push(shapeQ(['چهارضلعی', 'ذوزنقه', 'ششضلعی'][d], [4, 4, 6][d]));
+        return q;
+      },
+      stats: (R, d) => {
+        const q = [];
+        for (let i = 0; i < 4; i++) { const a = R(i + 1, 2, 12, 5); q.push(meanQ([a, a + 2, a + 4, a + 6])); }
+        for (let i = 0; i < 3; i++) q.push(probQ([10, 20, 25, 30, 40][(i + d) % 5]));
+        for (let i = 0; i < 3; i++) q.push(varQ(R(i + 2, 1, 9, 11), i % 2 ? 4 : 2));
+        return q;
+      },
+      quad: (R, d) => {
+        const q = [];
+        for (let i = 0; i < 4; i++) {
+          const r1 = R(i + 1, 1, 5, 5), r2 = R(i + 4, 2, 6, 7);
+          q.push(quadQ(r1, r2 === r1 ? r2 + 1 : r2));
+        }
+        for (let i = 0; i < 3; i++) q.push(deltaQ(R(i + 2, 4, 8, 11), R(i + 5, 1, 3, 13)));
+        for (let i = 0; i < 3; i++) q.push(vertexQ(R(i + 2, 1, 4, 17), R(i + 4, 1, 5, 19) + R(i + 2, 1, 4, 17) ** 2));
+        return q;
+      }
+    };
+
+    const BANK = {};
+    for (let g = 1; g <= 9; g++) {
+      BANK['g' + g] = {};
+      for (const diff of ['easy', 'medium', 'hard']) {
+        const d = diff === 'easy' ? 0 : diff === 'medium' ? 1 : 2;
+        const R = (seed, min, max, prime = 7) => min + ((seed * 97 + prime * 31 + g * 13 + d * 7) % (max - min + 1));
+        BANK['g' + g][diff] = {};
+        for (const ch of CHAPTERS['g' + g]) BANK['g' + g][diff][ch.id] = TOPIC[ch.id](R, d);
+      }
+    }
+
+    const state = {
+      name: '', level: 'g1', difficulty: 'easy', chapter: 'count', questions: [], idx: 0, results: [],
+      correct: 0, selected: -1, answered: false,
+      timeLeft: TIME_PER_Q, totalTime: 0,
+      streak: 0, bestStreak: 0, timer: null
+    };
+
+    const faDigits = fd;
+    const shuffle = (arr) => {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    };
+    const showScreen = (id) => {
+      $$('.screen').forEach((s) => s.classList.toggle('active', s.id === id));
+      window.scrollTo({ top: 0, behavior: 'auto' });
+    };
+
+    const chapterLabel = () => (CHAPTERS[state.level].find((c) => c.id === state.chapter) || {}).label || '';
+    const bestKey = () => `mathyar_best_${state.level}_${state.difficulty}_${state.chapter}`;
+
+    function populateChapters() {
+      const select = $('#chapterSelect');
+      select.innerHTML = CHAPTERS[state.level].map((c) => `<option value="${c.id}">${c.label}</option>`).join('');
+      if (!CHAPTERS[state.level].some((c) => c.id === state.chapter)) state.chapter = CHAPTERS[state.level][0].id;
+      select.value = state.chapter;
+    }
+
+    function updateBestNote() {
+      const best = Number(localStorage.getItem(bestKey()) || 0);
+      $('#bestNote').innerHTML = best
+        ? `بهترین نتیجه شما در کلاس ${LEVEL_LABEL[state.level]} · فصل «${chapterLabel()}» · ${DIFF_LABEL[state.difficulty]}: <b>${faDigits(best)}٪</b> 🎉`
+        : 'اولین تلاشت رو شروع کن، نتیجهات اینجا ذخیره میشود.';
+    }
+
+    $$('.level-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        $$('.level-btn').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.level = btn.dataset.level;
+        populateChapters();
+        updateBestNote();
+      });
+    });
+
+    $$('.diff-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        $$('.diff-btn').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        state.difficulty = btn.dataset.diff;
+        updateBestNote();
+      });
+    });
+
+    $('#chapterSelect').addEventListener('change', (e) => {
+      state.chapter = e.target.value;
+      updateBestNote();
+    });
+
+    $('#startBtn').addEventListener('click', startQuiz);
+    $('#studentName').addEventListener('keydown', (e) => { if (e.key === 'Enter') startQuiz(); });
+    $('#nextBtn').addEventListener('click', nextQuestion);
+    $('#againBtn').addEventListener('click', startQuiz);
+    $('#homeBtn').addEventListener('click', () => { updateBestNote(); showScreen('landing'); $('#studentName').focus(); });
+
+    function startQuiz() {
+      state.name = $('#studentName').value.trim() || 'دانشآموز';
+      state.chapter = $('#chapterSelect').value || state.chapter;
+      state.questions = shuffle(BANK[state.level][state.difficulty][state.chapter]).slice(0, 10).map((q) => {
+        const choices = shuffle(q.options);
+        return { ...q, choices, answer: choices.indexOf(q.answer) };
+      });
+      state.idx = 0;
+      state.results = [];
+      state.correct = 0;
+      state.totalTime = 0;
+      state.streak = 0;
+      state.bestStreak = 0;
+      $('#quizName').textContent = state.name;
+      $('#levelLabel').textContent = `کلاس ${LEVEL_LABEL[state.level]} · ${chapterLabel()} · ${DIFF_LABEL[state.difficulty]}`;
+      $('#dots').innerHTML = Array.from({ length: 3 }, (_, i) => `<i class="${i < LEVEL_DOTS[state.difficulty] ? 'on' : ''}"></i>`).join('');
+      $('#againBtn').textContent = 'یک بار دیگه ←';
+      showScreen('quiz');
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const q = state.questions[state.idx];
+      state.answered = false;
+      state.selected = -1;
+      $('#qBadge').textContent = `سوال ${faDigits(state.idx + 1)} از ${faDigits(state.questions.length)}`;
+      $('#progressFill').style.width = (state.idx / state.questions.length) * 100 + '%';
+      $('#questionText').innerHTML = q.q;
+      $('#choices').innerHTML = q.choices.map((c, i) =>
+        `<button class="choice" type="button" data-i="${i}"><span class="key">${['الف','ب','ج','د'][i]}</span><span>${c}</span></button>`
+      ).join('');
+      $$('#choices .choice').forEach((b) => b.addEventListener('click', () => handleAnswer(+b.dataset.i)));
+      $('#feedback').className = 'feedback';
+      $('#nextBtn').hidden = true;
+      startTimer();
+    }
+
+    function startTimer() {
+      clearInterval(state.timer);
+      state.timeLeft = TIME_PER_Q;
+      updateTimerUI();
+      state.timer = setInterval(() => {
+        state.timeLeft--;
+        state.totalTime++;
+        updateTimerUI();
+        if (state.timeLeft <= 0) {
+          clearInterval(state.timer);
+          handleAnswer(-1, true);
+        }
+      }, 1000);
+    }
+
+    function updateTimerUI() {
+      $('#timerText').textContent = faDigits(state.timeLeft) + ' ث';
+      $('#timer').classList.toggle('low', state.timeLeft <= 8);
+      const circumference = 2 * Math.PI * 16;
+      $('#timerBar').style.strokeDashoffset = circumference * (1 - state.timeLeft / TIME_PER_Q);
+    }
+
+    function handleAnswer(i, timedOut = false) {
+      if (state.answered) return;
+      state.answered = true;
+      clearInterval(state.timer);
+      state.selected = i;
+      state.results[state.idx] = i;
+      const q = state.questions[state.idx];
+      const isRight = i === q.answer;
+
+      if (isRight) {
+        state.correct++;
+        state.streak++;
+        state.bestStreak = Math.max(state.bestStreak, state.streak);
+      } else {
+        state.streak = 0;
+      }
+
+      $$('#choices .choice').forEach((btn, j) => {
+        if (j === q.answer) btn.classList.add('is-correct');
+        else if (j === i) btn.classList.add('is-wrong');
+        else btn.classList.add('is-dim');
+        btn.disabled = true;
+      });
+
+      const fb = $('#feedback');
+      fb.className = 'feedback show' + (isRight ? '' : ' bad');
+      $('#fbIcon').textContent = isRight ? '🎉' : (timedOut ? '⏰' : '💡');
+      $('#fbTitle').textContent = isRight
+        ? 'آفرین! دقیق بود 🎯'
+        : (timedOut ? 'زمان تمام شد!' : 'اشتباه شد، ولی مهم یادگیریه!');
+      $('#fbText').textContent = (isRight ? '' : `پاسخ درست: ${q.choices[q.answer]}. `) + q.exp;
+
+      const last = state.idx === state.questions.length - 1;
+      $('#nextBtn').textContent = last ? 'مشاهده نتیجه ←' : 'سوال بعدی ←';
+      $('#nextBtn').hidden = false;
+      $('#nextBtn').focus({ preventScroll: true });
+    }
+
+    function nextQuestion() {
+      if (!state.answered) return;
+      if (state.idx < state.questions.length - 1) {
+        state.idx++;
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (!$('#quiz').classList.contains('active')) return;
+      if (state.answered && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault(); nextQuestion();
+      } else if (!state.answered && ['1','2','3','4'].includes(e.key)) {
+        handleAnswer(+e.key - 1);
+      }
+    });
+
+    function formatTime(s) {
+      return faDigits(`${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`);
+    }
+
+    function showResult() {
+      clearInterval(state.timer);
+      const total = state.questions.length;
+      const pct = Math.round((state.correct / total) * 100);
+
+      const prev = Number(localStorage.getItem(bestKey()) || 0);
+      if (pct > prev) localStorage.setItem(bestKey(), String(pct));
+
+      const ring = $('#scoreRing');
+      ring.style.setProperty('--pct', pct);
+      ring.setAttribute('aria-label', `درصد نتیجه ${faDigits(pct)}`);
+
+      let title, sub;
+      if (pct >= 85) { title = 'درخشان بودی! 🌟'; sub = 'تسلط خیلی خوبی داری. میتونی سراغ فصل بعدی بری!'; }
+      else if (pct >= 60) { title = 'کار خیلی خوبی کردی! 👏'; sub = 'پاسخهای درستت خیلی خوبه، مرور سوالات رو از دست نده.'; }
+      else { title = 'شروع خوبی بود 💪'; sub = 'هر اشتباه یه قدم یادگیریه. یه بار دیگه تلاش کن، حتماً بهتر میشود.'; }
+      $('#resultTitle').textContent = title;
+      $('#resultSub').textContent = sub;
+
+      animateNumber($('#scoreNum'), pct, 900);
+      $('#stCorrect').textContent = faDigits(state.correct);
+      $('#stWrong').textContent = faDigits(total - state.correct);
+      $('#stTime').textContent = formatTime(state.totalTime);
+      $('#stStreak').textContent = faDigits(state.bestStreak);
+
+      $('#reviewList').innerHTML = state.questions.map((q, i) => {
+        const your = state.results[i];
+        const good = your === q.answer;
+        return `<details>
+          <summary><span class="status-dot ${good ? 'ok' : 'no'}"></span>
+            <span class="sq">${faDigits(i + 1)}. ${q.q}</span>
+            <span class="mini-tag ${good ? 'ok' : 'no'}">${good ? 'درست' : (your === -1 ? 'بدون پاسخ' : 'نادرست')}</span>
+          </summary>
+          <div class="review-body">پاسخ شما: <b>${your === -1 ? '—' : q.choices[your]}</b> · پاسخ درست: <b>${q.choices[q.answer]}</b><p>${q.exp}</p></div>
+        </details>`;
+      }).join('');
+
+      showScreen('result');
+      if (pct >= 70) confetti();
+    }
+
+    function animateNumber(el, target, duration) {
+      const start = performance.now();
+      function frame(now) {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = faDigits(Math.round(target * eased));
+        if (p < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    function confetti() {
+      const colors = ['#6c5ce7','#00b894','#ffb84d','#ef5b6b','#4dabf7'];
+      for (let i = 0; i < 36; i++) {
+        const c = document.createElement('i');
+        c.className = 'confetti';
+        c.style.left = Math.random() * 100 + 'vw';
+        c.style.background = colors[i % colors.length];
+        c.style.animationDelay = (Math.random() * 0.5).toFixed(2) + 's';
+        c.style.animationDuration = (2 + Math.random() * 1.2).toFixed(2) + 's';
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 3800);
+      }
+    }
+
+    populateChapters();
+    updateBestNote();
+  </script>
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+      });
+    }
+  </script>
+
+  <script>
+    (function () {
+      const installBtn = document.getElementById('installBtn');
+      const installHint = document.getElementById('installHint');
+      let deferredPrompt = null;
+
+      if (window.matchMedia('(display-mode: standalone)').matches || navigator.standalone) return;
+
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        installBtn.hidden = false;
+      });
+
+      installBtn.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+        installBtn.hidden = true;
+        deferredPrompt.prompt();
+        const choice = await deferredPrompt.userChoice;
+        deferredPrompt = null;
+        if (choice && choice.outcome !== 'accepted') installBtn.hidden = false;
+      });
+
+      window.addEventListener('appinstalled', () => {
+        deferredPrompt = null;
+        installBtn.hidden = true;
+      });
+
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      if (isIOS) installHint.hidden = false;
+    })();
+  </script>
+</body>
+</html>
