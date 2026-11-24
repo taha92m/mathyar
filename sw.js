@@ -1,4 +1,4 @@
-const CACHE = 'mathyar-v2';
+const CACHE = 'mathyar-v3';
 const ASSETS = [
   './',
   './index.html',
