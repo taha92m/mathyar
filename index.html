@@ -404,6 +404,72 @@
     .actions { display: flex; gap: 12px; margin-top: 22px; }
     .actions .btn { flex: 1; }
 
+    /* ---------- Teacher / admin panel ---------- */
+    .teacher-link {
+      margin-top: 14px;
+      width: 100%;
+      border: 1px dashed #c9c2ff;
+      background: #faf9ff;
+      color: var(--primary-dark);
+      border-radius: 13px;
+      padding: 10px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .teacher-link:hover { background: #f2efff; }
+
+    .panel-shell { max-width: 1000px; margin-inline: auto; padding: 14px 0 70px; }
+    .panel-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
+    .panel-head h2 { margin: 0; font-size: 24px; }
+    .panel-head .btn { padding: 10px 16px; font-size: 14px; }
+    .panel-card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 16px;
+    }
+    .panel-note { font-size: 12.5px; color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
+    .panel-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .kpi { background: #f8f9fd; border: 1px solid var(--line); border-radius: 16px; padding: 14px 10px; text-align: center; }
+    .kpi .v { font-size: 24px; font-weight: 800; font-variant-numeric: tabular-nums; }
+    .kpi .l { font-size: 12px; color: var(--muted); margin-top: 3px; }
+    .kpi.ok .v { color: #087a61; }
+    .kpi.no .v { color: var(--danger); }
+    .kpi.avg .v { color: var(--primary-dark); }
+    .panel-card h3 { font-size: 16px; margin: 0 0 12px; }
+    .filters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .filters select {
+      width: 100%; border: 2px solid var(--line); border-radius: 12px; padding: 10px 12px;
+      font-size: 13px; font-weight: 600; color: var(--ink); background: #fcfcff; outline: none;
+    }
+    .filters select:focus { border-color: var(--primary); }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 14px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 620px; }
+    th, td { padding: 11px 12px; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--line); }
+    th { background: #f8f9fd; color: var(--muted); font-size: 12px; font-weight: 700; }
+    tr:last-child td { border-bottom: 0; }
+    td.num, th.num { font-variant-numeric: tabular-nums; }
+    .pill { border-radius: 999px; padding: 3px 9px; font-size: 11px; font-weight: 700; background: #f0edff; color: var(--primary-dark); }
+    .pill.good { background: #e6f9f2; color: #087a61; }
+    .pill.bad { background: #ffeff1; color: #c33d4d; }
+    .empty { text-align: center; color: var(--muted); padding: 22px; font-size: 13px; }
+    .panel-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+    .panel-actions .btn { flex: 1; min-width: 150px; padding: 11px 14px; font-size: 14px; }
+    .pin-box { max-width: 420px; margin: 60px auto; text-align: center; }
+    .pin-box h2 { margin: 0 0 8px; }
+    .pin-box p { color: var(--muted); font-size: 13px; line-height: 1.8; margin: 0 0 18px; }
+    .pin-box input {
+      width: 100%; text-align: center; letter-spacing: 8px; font-size: 24px; font-weight: 800;
+      border: 2px solid var(--line); border-radius: 14px; padding: 12px; outline: none; color: var(--ink);
+    }
+    .pin-box input:focus { border-color: var(--primary); }
+    .pin-box .err { color: var(--danger); font-size: 13px; min-height: 20px; margin-top: 10px; }
+    .pin-change { display: flex; gap: 8px; margin-top: 12px; }
+    .pin-change input { flex: 1; min-width: 0; border: 2px solid var(--line); border-radius: 12px; padding: 10px; font-size: 14px; outline: none; }
+    .pin-change input:focus { border-color: var(--primary); }
+
     .confetti { position: fixed; top: -20px; width: 9px; height: 14px; z-index: 50; pointer-events: none; border-radius: 2px; animation: fall 2.6s linear forwards; }
     @keyframes fall {
       to { transform: translateY(110vh) rotate(720deg); opacity: 0.2; }
@@ -419,6 +485,9 @@
       .actions { flex-direction: column; }
       .q-footer { align-items: stretch; flex-direction: column-reverse; }
       .next-btn { width: 100%; }
+      .panel-grid, .filters { grid-template-columns: repeat(2, 1fr); }
+      .panel-head { flex-direction: column; align-items: stretch; }
+      .panel-actions .btn { min-width: 100%; }
     }
 
     @media (max-width: 380px) {
@@ -485,6 +554,7 @@
             <button id="installBtn" class="btn btn-ghost btn-block" type="button" hidden>📲 نصب اپ ریاضیار</button>
             <div id="installHint" class="best-note" hidden>برای نصب روی آیفون: دکمه اشتراکگذاری ⬆️ را بزن و «Add to Home Screen» را انتخاب کن.</div>
             <div id="bestNote" class="best-note" role="status"></div>
+            <button id="teacherBtn" class="teacher-link" type="button">👩‍🏫 پنل معلم و مدیر (مشاهده نمرات و آمار تستها)</button>
           </div>
 
           <div class="chips">
@@ -593,6 +663,83 @@
         <div class="actions">
           <button id="againBtn" class="btn btn-primary" type="button">یک بار دیگه ←</button>
           <button id="homeBtn" class="btn btn-ghost" type="button">تغییر کلاس و سختی</button>
+          <button id="resultTeacherBtn" class="btn btn-ghost" type="button">پنل معلم</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- ============ TEACHER / ADMIN ============ -->
+    <main id="teacher" class="screen">
+      <div class="panel-shell">
+        <section id="pinGate" class="panel-card pin-box">
+          <h2>🔒 پنل معلم و مدیر</h2>
+          <p>برای دیدن نمرات و آمار تستها، رمز معلم را وارد کن.<br />رمز پیشفرض: <b>۱۲۳۴</b></p>
+          <input id="pinInput" type="password" inputmode="numeric" maxlength="4" placeholder="••••" aria-label="رمز معلم" autocomplete="off" />
+          <div id="pinError" class="err" role="alert"></div>
+          <button id="pinSubmit" class="btn btn-primary btn-block" type="button">ورود به پنل ←</button>
+          <button id="pinBack" class="btn btn-ghost btn-block" type="button">بازگشت</button>
+        </section>
+
+        <div id="teacherDash" hidden>
+          <div class="panel-head">
+            <h2>📊 پنل معلم و مدیر</h2>
+            <button id="teacherBack" class="btn btn-ghost" type="button">بازگشت ←</button>
+          </div>
+
+          <div class="panel-card">
+            <div class="panel-note">
+              آمار زیر فقط تستهایی است که روی <b>همین گوشی/مرورگر</b> زده شده است.
+              برای دیدن آمار تمام دانشآموزان روی دستگاههای مختلف، نیاز به سرور مشترک است.
+            </div>
+            <div class="panel-grid">
+              <div class="kpi"><div id="kTests" class="v">۰</div><div class="l">تعداد تستها</div></div>
+              <div class="kpi ok"><div id="kCorrect" class="v">۰</div><div class="l">پاسخ درست</div></div>
+              <div class="kpi no"><div id="kWrong" class="v">۰</div><div class="l">پاسخ نادرست</div></div>
+              <div class="kpi avg"><div id="kAvg" class="v">۰٪</div><div class="l">میانگین نمرات</div></div>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <h3>🔎 فیلتر آمار</h3>
+            <div class="filters">
+              <select id="filterStudent" aria-label="فیلتر دانشآموز"></select>
+              <select id="filterLevel" aria-label="فیلتر کلاس"><option value="">همه کلاسها</option></select>
+              <select id="filterDiff" aria-label="فیلتر سختی"><option value="">همه سختیها</option></select>
+              <select id="filterChapter" aria-label="فیلتر فصل"><option value="">همه فصلها</option></select>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <h3>👥 خلاصه دانشآموزان</h3>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>دانشآموز</th><th class="num">تست</th><th class="num">درست</th><th class="num">نادرست</th><th class="num">میانگین</th><th class="num">بهترین</th></tr></thead>
+                <tbody id="studentRows"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <h3>📝 همه تستها (جدیدترین اول)</h3>
+            <div class="table-wrap">
+              <table>
+                <thead><tr><th>تاریخ</th><th>دانشآموز</th><th>کلاس</th><th>سختی</th><th>فصل</th><th class="num">درست</th><th class="num">نادرست</th><th class="num">نمره</th></tr></thead>
+                <tbody id="recordRows"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="panel-card">
+            <h3>⚙️ ابزارها</h3>
+            <div class="panel-actions">
+              <button id="exportBtn" class="btn btn-primary" type="button">⬇️ خروجی CSV (اکسل)</button>
+              <button id="clearBtn" class="btn btn-ghost" type="button">🗑 حذف همه آمار</button>
+            </div>
+            <div class="pin-change">
+              <input id="newPin" type="password" inputmode="numeric" maxlength="4" placeholder="رمز جدید (۴ رقم)" aria-label="رمز جدید" />
+              <button id="savePin" class="btn btn-ghost" type="button">تغییر رمز</button>
+            </div>
+          </div>
         </div>
       </div>
     </main>
@@ -840,6 +987,29 @@
       streak: 0, bestStreak: 0, timer: null
     };
 
+    // ---------- آمار معلم / مدیر (ذخیره محلی روی همین دستگاه) ----------
+    const RECORDS_KEY = 'mathyar_records_v1';
+    const PIN_KEY = 'mathyar_teacher_pin';
+    const DEFAULT_PIN = '1234';
+    let teacherUnlocked = false;
+
+    const toEnDigits = (s) => String(s).replace(/[۰-۹]/g, (d) => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d));
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    const getPin = () => localStorage.getItem(PIN_KEY) || DEFAULT_PIN;
+
+    function loadRecords() {
+      try { return JSON.parse(localStorage.getItem(RECORDS_KEY) || '[]'); }
+      catch { return []; }
+    }
+    function saveRecords(list) {
+      try { localStorage.setItem(RECORDS_KEY, JSON.stringify(list.slice(-2000))); }
+      catch { /* فضای ذخیرهسازی ممکن است مسدود شده باشد */ }
+    }
+    function chapterName(level, id) {
+      const c = (CHAPTERS[level] || []).find((x) => x.id === id);
+      return c ? c.label : id;
+    }
+
     const faDigits = fd;
     const shuffle = (arr) => {
       const a = [...arr];
@@ -1026,6 +1196,12 @@
       const total = state.questions.length;
       const pct = Math.round((state.correct / total) * 100);
 
+      saveRecords([...loadRecords(), {
+        name: state.name, level: state.level, difficulty: state.difficulty, chapter: state.chapter,
+        correct: state.correct, wrong: total - state.correct, total, pct,
+        time: state.totalTime, streak: state.bestStreak, at: new Date().toISOString()
+      }]);
+
       const prev = Number(localStorage.getItem(bestKey()) || 0);
       if (pct > prev) localStorage.setItem(bestKey(), String(pct));
 
@@ -1086,6 +1262,153 @@
         setTimeout(() => c.remove(), 3800);
       }
     }
+
+    // ---------- پنل معلم / مدیر ----------
+    function openTeacher() {
+      showScreen('teacher');
+      if (teacherUnlocked) {
+        $('#pinGate').hidden = true;
+        $('#teacherDash').hidden = false;
+        renderTeacher();
+      } else {
+        $('#pinGate').hidden = false;
+        $('#teacherDash').hidden = true;
+        $('#pinError').textContent = '';
+        $('#pinInput').value = '';
+        setTimeout(() => $('#pinInput').focus(), 60);
+      }
+    }
+
+    function unlockTeacher() {
+      const v = toEnDigits($('#pinInput').value.trim());
+      if (v !== getPin()) {
+        $('#pinError').textContent = 'رمز اشتباه است. رمز پیشفرض ۱۲۳۴ است.';
+        $('#pinInput').select();
+        return;
+      }
+      teacherUnlocked = true;
+      $('#pinGate').hidden = true;
+      $('#teacherDash').hidden = false;
+      $('#pinError').textContent = '';
+      renderTeacher();
+    }
+
+    function fillSelect(sel, options) {
+      const prev = sel.value;
+      sel.innerHTML = options.map(([v, l]) => `<option value="${esc(v)}">${esc(l)}</option>`).join('');
+      sel.value = options.some(([v]) => v === prev) ? prev : '';
+    }
+
+    function filteredRecords() {
+      const s = $('#filterStudent').value;
+      const l = $('#filterLevel').value;
+      const d = $('#filterDiff').value;
+      const c = $('#filterChapter').value;
+      return loadRecords()
+        .slice()
+        .sort((a, b) => new Date(b.at) - new Date(a.at))
+        .filter((r) => (!s || r.name === s) && (!l || r.level === l) && (!d || r.difficulty === d) && (!c || r.chapter === c));
+    }
+
+    function formatDate(iso) {
+      try { return new Date(iso).toLocaleString('fa-IR', { dateStyle: 'short', timeStyle: 'short' }); }
+      catch { return String(iso).slice(0, 16).replace('T', ' '); }
+    }
+
+    function renderTeacher() {
+      const all = loadRecords().slice().sort((a, b) => new Date(b.at) - new Date(a.at));
+
+      const names = [...new Set(all.map((r) => r.name || 'دانشآموز'))].sort((a, b) => a.localeCompare(b, 'fa'));
+      fillSelect($('#filterStudent'), [['', 'همه دانشآموزان'], ...names.map((n) => [n, n])]);
+      fillSelect($('#filterLevel'), [['', 'همه کلاسها'], ...Object.keys(LEVEL_LABEL).map((k) => [k, 'کلاس ' + LEVEL_LABEL[k]])]);
+      fillSelect($('#filterDiff'), [['', 'همه سختیها'], ...Object.keys(DIFF_LABEL).map((k) => [k, DIFF_LABEL[k]])]);
+      const chapters = [...new Map(Object.values(CHAPTERS).flat().map((c) => [c.id, c.label])).entries()];
+      fillSelect($('#filterChapter'), [['', 'همه فصلها'], ...chapters.map(([id, label]) => [id, label])]);
+
+      const list = filteredRecords();
+      const correct = list.reduce((n, r) => n + (r.correct || 0), 0);
+      const wrong = list.reduce((n, r) => n + (r.wrong || 0), 0);
+      const avg = list.length ? Math.round(list.reduce((n, r) => n + (r.pct || 0), 0) / list.length) : 0;
+      $('#kTests').textContent = faDigits(list.length);
+      $('#kCorrect').textContent = faDigits(correct);
+      $('#kWrong').textContent = faDigits(wrong);
+      $('#kAvg').textContent = faDigits(avg) + '٪';
+
+      const byName = {};
+      list.forEach((r) => {
+        const k = r.name || 'دانشآموز';
+        if (!byName[k]) byName[k] = { name: k, tests: 0, correct: 0, wrong: 0, sum: 0, best: 0 };
+        const s = byName[k];
+        s.tests++; s.correct += r.correct || 0; s.wrong += r.wrong || 0;
+        s.sum += r.pct || 0; s.best = Math.max(s.best, r.pct || 0);
+      });
+      const students = Object.values(byName)
+        .map((s) => ({ ...s, avg: Math.round(s.sum / s.tests) }))
+        .sort((a, b) => b.avg - a.avg || b.tests - a.tests);
+      $('#studentRows').innerHTML = students.length
+        ? students.map((s) => `<tr>
+            <td>${esc(s.name)}</td><td class="num">${faDigits(s.tests)}</td>
+            <td class="num">${faDigits(s.correct)}</td><td class="num">${faDigits(s.wrong)}</td>
+            <td class="num"><span class="pill ${s.avg >= 60 ? 'good' : 'bad'}">${faDigits(s.avg)}٪</span></td>
+            <td class="num">${faDigits(s.best)}٪</td></tr>`).join('')
+        : '<tr><td colspan="6" class="empty">هنوز تستی ثبت نشده است.</td></tr>';
+
+      $('#recordRows').innerHTML = list.length
+        ? list.map((r) => `<tr>
+            <td>${esc(formatDate(r.at))}</td><td>${esc(r.name || 'دانشآموز')}</td>
+            <td>کلاس ${esc(LEVEL_LABEL[r.level] || r.level)}</td>
+            <td>${esc(DIFF_LABEL[r.difficulty] || r.difficulty)}</td>
+            <td>${esc(chapterName(r.level, r.chapter))}</td>
+            <td class="num">${faDigits(r.correct || 0)}</td><td class="num">${faDigits(r.wrong || 0)}</td>
+            <td class="num"><span class="pill ${r.pct >= 60 ? 'good' : 'bad'}">${faDigits(r.pct || 0)}٪</span></td></tr>`).join('')
+        : '<tr><td colspan="8" class="empty">هنوز تستی ثبت نشده است.</td></tr>';
+    }
+
+    function exportCsv() {
+      const list = filteredRecords();
+      if (!list.length) { alert('هیچ آماری برای خروجی گرفتن وجود ندارد.'); return; }
+      const rows = [
+        ['تاریخ', 'دانشآموز', 'کلاس', 'سختی', 'فصل', 'درست', 'نادرست', 'نمره', 'زمان(ثانیه)'],
+        ...list.map((r) => [
+          formatDate(r.at), r.name || 'دانشآموز', LEVEL_LABEL[r.level] || r.level,
+          DIFF_LABEL[r.difficulty] || r.difficulty, chapterName(r.level, r.chapter),
+          r.correct || 0, r.wrong || 0, (r.pct || 0) + '%', r.time || 0
+        ])
+      ];
+      const csv = '\uFEFF' + rows.map((row) => row.map((v) => `"${String(v).replace(/"/g, '""')}"`).join(',')).join('\r\n');
+      const url = URL.createObjectURL(new Blob([csv], { type: 'text/csv;charset=utf-8' }));
+      const a = document.createElement('a');
+      a.href = url; a.download = 'mathyar-report.csv'; a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+
+    $('#teacherBtn').addEventListener('click', openTeacher);
+    $('#resultTeacherBtn').addEventListener('click', openTeacher);
+    $('#pinBack').addEventListener('click', () => showScreen('landing'));
+    $('#teacherBack').addEventListener('click', () => showScreen('landing'));
+    $('#pinSubmit').addEventListener('click', unlockTeacher);
+    $('#pinInput').addEventListener('keydown', (e) => { if (e.key === 'Enter') unlockTeacher(); });
+    ['filterStudent', 'filterLevel', 'filterDiff', 'filterChapter'].forEach((id) => {
+      $('#' + id).addEventListener('change', renderTeacher);
+    });
+    $('#exportBtn').addEventListener('click', exportCsv);
+    $('#clearBtn').addEventListener('click', () => {
+      if (!confirm('همه آمار تستها حذف شود؟ این کار قابل برگشت نیست.')) return;
+      localStorage.removeItem(RECORDS_KEY);
+      renderTeacher();
+    });
+    $('#savePin').addEventListener('click', () => {
+      const v = toEnDigits($('#newPin').value.trim());
+      if (!/^\d{4}$/.test(v)) {
+        $('#savePin').textContent = '۴ رقم وارد کن';
+        return;
+      }
+      localStorage.setItem(PIN_KEY, v);
+      $('#newPin').value = '';
+      const b = $('#savePin');
+      b.textContent = 'ذخیره شد ✓';
+      setTimeout(() => { b.textContent = 'تغییر رمز'; }, 1800);
+    });
 
     populateChapters();
     updateBestNote();
